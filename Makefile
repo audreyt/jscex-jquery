@@ -4,7 +4,9 @@ all :: deps
 deps ::
 	npm i
 
-demo :: deps
+demo ::
 	node example.js
 
-test :: demo
+test :: all demo
+	node example.js
+
