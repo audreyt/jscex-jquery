@@ -91,6 +91,14 @@
   $.async = function(cb){
     return Jscex.compile('async-jquery', cb).replace(/(Jscex.builders\["async-jquery"\])/, '$.$1');
   };
+  $.async.sleep = function(ms){
+    var __;
+    __ = $.Deferred();
+    setTimeout(function(){
+      return __.resolve();
+    }, ms);
+    return __;
+  };
   /* Turn off Jscex logging by default */
   Jscex.logger.level = 999;
   /* Export the $ object extended with $.Jscex */

@@ -22,7 +22,7 @@ Jscex.Async.@Binding.fromPromise = (p) ->
 /* Our own monad that runs on $.Deferred instead of Task */
 class AsyncBuilder
     Start: (_this, step) ->
-        __ = $.Deferred()
+        __ = $.Deferred!
         step.next _this, !(type, value, target) ->
             switch type
             | \normal \return   => __.resolve value
@@ -53,6 +53,11 @@ $.async = (cb) -> Jscex.compile(\async-jquery, cb).replace(
     /(Jscex.builders\["async-jquery"\])/
     '$.$1'
 )
+
+$.async.sleep = (ms) ->
+    __ = $.Deferred!
+    setTimeout (-> __.resolve!), ms
+    return __
 
 /* Turn off Jscex logging by default */
 Jscex.logger.level = 999

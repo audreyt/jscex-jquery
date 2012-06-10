@@ -34,10 +34,8 @@ The source code is in `src` directory and written in LiveScript.
 Note that LiveScript is _not_ a runtime dependency of this module;
 it's only used for development.
 
-# Caveats
-
-At the moment, this module only runs under Node.js.  Pull requests
-welcome for porting to other runtime environments!
+For use in client-side browser environments, please see examples
+in the `samples` directory.
 
 # See Also
 
