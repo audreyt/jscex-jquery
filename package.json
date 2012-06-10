@@ -1,6 +1,7 @@
 { "name" :            "jscex-jquery"
     , "description" : "Jscex as a jQuery plugin"
     , "version" :    "0.0.1"
+    , "main": "jscex-jquery.js"
     , "dependencies": {
         "jquery": "*",
         "jscex": "*",
@@ -10,5 +11,12 @@
     }
     , "devDependencies": {
         "LiveScript": "0.9.7"
+    }
+    , "keywords":    ["promise", "jquery", "async", "jit"]
+    , "homepage":    "https://github.com/audreyt/jscex-jquery"
+    , "author":      "唐鳳 <audreyt@audreyt.org>"
+    , "repository": {
+        "type": "git",
+        "url": "https://github.com/audreyt/jscex-jquery.git"
     }
 }

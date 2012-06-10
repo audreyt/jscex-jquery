@@ -20,10 +20,12 @@ fetch('http://.../').done(...).fail(...).always(...);
     
 # Description
 
-This module exports Jscex as a jQuery plugin, providing a `$.Jscex`
-root object along with a `$.async` helper that runs a function under
-Jscex, providing an extra `$await` keyword that implicitly waits for
-jQuery promises.
+This module exports `$.Jscex` as a jQuery plugin, providing an
+`$.async` helper that turns a regular function into one that
+returns a Promise object.
+
+Functions defines with `$.async` has access to an extra `$await`
+keyword, which can implicitly wait for other Promise objects.
 
 Please see `example.js` for a sample usage, and type `make demo`
 to see it in action.
