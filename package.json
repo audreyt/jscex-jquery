@@ -1,0 +1,14 @@
+{ "name" :            "jscex-jquery"
+    , "description" : "Jscex as a jQuery plugin"
+    , "version" :    "0.0.1"
+    , "dependencies": {
+        "jquery": "*",
+        "jscex": "*",
+        "jscex-jit": "*",
+        "jscex-async": "*",
+        "jscex-async-powerpack": "*"
+    }
+    , "devDependencies": {
+        "LiveScript": "0.9.7"
+    }
+}
