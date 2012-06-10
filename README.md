@@ -9,10 +9,13 @@ Please see `example.js` for a sample usage, and type `make demo`
 to see it in action.
 
 The source code is in `src` directory and written in LiveScript.
+Note that LiveScript is _not_ a runtime dependency of this module;
+it's only used for development.
 
 # See Also
 
 * Jscex: http://jscex.info/
+* jQuery.Deferred: http://api.jquery.com/category/deferred-object/
 * LiveScript: https://gkz.github.com/LiveScript
 
 # CC0 1.0 Universal
