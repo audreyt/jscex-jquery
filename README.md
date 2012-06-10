@@ -20,6 +20,10 @@ var fetch = eval($.async(function(url) {
 // Return value of the Async function is always a Promise
 fetch('http://.../').done(...).fail(...).always(...);
 ```
+
+# Demo (HTML5 Canvas required)
+
+http://audreyt.github.com/jscex-jquery/samples/sorting-animations.html
     
 # Description
 
