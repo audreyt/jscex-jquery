@@ -4,7 +4,8 @@ jscex-jquery
 # Synopsis
 
 ```javascript
-$ = require('jscex-jquery');
+// Drop-in replacement to require('jquery')
+var $ = require('jscex-jquery');
 
 // Define an Async function with a special $await keyword in it
 var fetch = eval($.async(function(url) {
