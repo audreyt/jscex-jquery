@@ -51,6 +51,7 @@ The underlying JIT compiler is available as the `$.Jscex` object.
 * Jscex: http://jscex.info/
 * jQuery.Deferred: http://api.jquery.com/category/deferred-object/
 * LiveScript: https://gkz.github.com/LiveScript
+* jQuery adapter for Q promises: https://github.com/audreyt/q-jscex/
 
 # CC0 1.0 Universal
 
