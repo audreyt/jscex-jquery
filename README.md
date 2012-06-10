@@ -7,14 +7,14 @@ jscex-jquery
 $ = require('./jscex-jquery');
 
 // Define an Async function with a special $await keyword in it
-var fetch = eval $.async(function(url) {
+var fetch = eval($.async(function(url) {
     // $await takes anything that returns a Promise
     var it = $await( $.get(url) );
     // ...do something with it...
     return it;
-});
+}));
 
-// Return value of the $.async() call is always a Promise
+// Return value of the Async function is always a Promise
 fetch('http://.../').done(...).fail(...).always(...);
 ```
     
