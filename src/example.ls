@@ -17,5 +17,4 @@ say '[Demo: Fetching invalid host, expecting ENOENT...]'
 
 say '[Demo: Fetching valid host, expecting snippet...]'
 
-<- fetch \http://blog.zhaojie.me
-    .always say
+fetch \http://blog.zhaojie.me .always say

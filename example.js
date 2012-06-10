@@ -22,6 +22,6 @@
     return say(this.responseText);
   }).always(function(){
     say('[Demo: Fetching valid host, expecting snippet...]');
-    return fetch('http://blog.zhaojie.me').always(say, function(){});
+    return fetch('http://blog.zhaojie.me').always(say);
   });
 }).call(this);
