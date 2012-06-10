@@ -12,10 +12,9 @@ fetch = eval $.async (url) ->
 say '[Demo: Fetching invalid host, expecting ENOENT...]'
 
 <- fetch \http://blog.zhaojie.error
-    .fail -> say it.responseText
+    .fail -> say @responseText
     .always
 
 say '[Demo: Fetching valid host, expecting snippet...]'
 
-<- fetch \http://blog.zhaojie.me
-    .always say
+fetch \http://blog.zhaojie.me .always say

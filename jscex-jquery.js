@@ -48,10 +48,10 @@
         switch (type) {
         case 'normal':
         case 'return':
-          __.resolve(value);
+          __.resolveWith(target != null ? target : value, [value]);
           break;
         case 'throw':
-          __.reject(value);
+          __.rejectWith(target != null ? target : value, [value]);
           break;
         default:
           throw new Error("Unsupported type: " + type);

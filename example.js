@@ -18,10 +18,10 @@
     };
   }));
   say('[Demo: Fetching invalid host, expecting ENOENT...]');
-  fetch('http://blog.zhaojie.error').fail(function(it){
-    return say(it.responseText);
+  fetch('http://blog.zhaojie.error').fail(function(){
+    return say(this.responseText);
   }).always(function(){
     say('[Demo: Fetching valid host, expecting snippet...]');
-    return fetch('http://blog.zhaojie.me').always(say, function(){});
+    return fetch('http://blog.zhaojie.me').always(say);
   });
 }).call(this);
