@@ -1,5 +1,5 @@
 { "name" :            "jscex-jquery"
-    , "description" : "Jscex as a jQuery plugin"
+    , "description" : "Async/Await support for jQuery 1.5+"
     , "version" :    "0.0.1"
     , "main": "jscex-jquery.js"
     , "dependencies": {
