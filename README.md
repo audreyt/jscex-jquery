@@ -2,8 +2,8 @@ jscex-jquery
 ============
 
 Exports Jscex as a jQuery plugin, providing a `$.Jscex` root object
-along with two helper functions, `$.evalAsync` and `$.async`, for
-converting between Jscex tasks and jQuery.Deferred promises.
+along with a helper functions, `$.evalAsync` that runs Jscex and
+have its `$await` keyword accept jQuery.Deferred objects.
 
 Please see `example.js` for a sample usage, and type `make demo`
 to see it in action.

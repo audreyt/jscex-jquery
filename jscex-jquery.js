@@ -21,13 +21,14 @@
       return t;
     });
   };
+  /* Our own monad that runs on $.Deferred instead of Task */
   AsyncBuilder = (function(){
     AsyncBuilder.displayName = 'AsyncBuilder';
     var prototype = AsyncBuilder.prototype, constructor = AsyncBuilder;
-    prototype.Start = function(_this, task){
+    prototype.Start = function(_this, step){
       var __;
       __ = $.Deferred();
-      task.next(_this, function(type, value, target){
+      step.next(_this, function(type, value, target){
         switch (type) {
         case 'normal':
         case 'return':

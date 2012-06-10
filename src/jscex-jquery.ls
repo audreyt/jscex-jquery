@@ -18,10 +18,11 @@ Jscex.Async.Binding.fromPromise = (p) ->
     )
     return t
 
+/* Our own monad that runs on $.Deferred instead of Task */
 class AsyncBuilder
-    Start: (_this, task) ->
+    Start: (_this, step) ->
         __ = $.Deferred()
-        task.next _this, (type, value, target) ->
+        step.next _this, (type, value, target) ->
             switch type
             | \normal \return   => __.resolve value
             | \throw            => __.reject value
