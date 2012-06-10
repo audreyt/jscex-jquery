@@ -1,6 +1,6 @@
 { "name" :            "jscex-jquery"
     , "description" : "Async/Await support for jQuery 1.5+"
-    , "version" :    "0.0.2"
+    , "version" :    "0.0.3"
     , "main": "jscex-jquery.js"
     , "dependencies": {
         "jquery": "*",
