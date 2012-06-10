@@ -1,8 +1,5 @@
 (function(){
-  var Jscex, $, XMLHttpRequest, AsyncBuilder, __ref;
-  Jscex = require('jscex');
-  require('jscex-jit').init(Jscex);
-  require('jscex-async').init(Jscex);
+  var $, XMLHttpRequest, Jscex, AsyncBuilder, __ref;
   if (typeof module != 'undefined' && module !== null) {
     module.exports = $ = require('jquery');
     XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
@@ -10,14 +7,24 @@
     $.ajaxSettings.xhr = function(){
       return new XMLHttpRequest;
     };
+    Jscex = require('jscex');
+    require('jscex-jit').init(Jscex);
+    require('jscex-async').init(Jscex);
   } else {
     ($ != null
       ? $
-      : $ = typeof jQuery != 'undefined' && jQuery !== null
-        ? jQuery
-        : {}).Deferred == null && (function(){
+      : $ = (__ref = this.$) != null
+        ? __ref
+        : (__ref = this.jQuery) != null
+          ? __ref
+          : {}).Deferred == null && (function(){
       throw new Error("$.Deferred not available -- Please include jQuery 1.5+");
     }());
+    Jscex == null && (Jscex = (__ref = this.Jscex) != null
+      ? __ref
+      : (function(){
+        throw new Error("Jscex not available -- Please include jscex.min.js");
+      }()));
   }
   /* Convert a Promise (Q, jQuery, Dojo) object into a Task */
   ((__ref = Jscex.Async).Binding || (__ref.Binding = {})).fromPromise = function(p){
@@ -82,7 +89,7 @@
      deferred Promise object representing its result.
   */
   $.async = function(cb){
-    return eval(Jscex.compile('async-jquery', cb));
+    return Jscex.compile('async-jquery', cb).replace(/(Jscex.builders\["async-jquery"\])/, '$.$1');
   };
   /* Turn off Jscex logging by default */
   Jscex.logger.level = 999;

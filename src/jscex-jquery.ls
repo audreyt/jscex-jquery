@@ -1,14 +1,14 @@
-Jscex = require \jscex
-require \jscex-jit .init Jscex
-require \jscex-async .init Jscex
-
 if module?
     module.exports = $ = require \jquery
     { XMLHttpRequest } = require \xmlhttprequest
     $.support.cors = yes
     $.ajaxSettings.xhr = -> new XMLHttpRequest
+    Jscex = require \jscex
+    require \jscex-jit .init Jscex
+    require \jscex-async .init Jscex
 else
-    ($ ?= jQuery ? {}).Deferred ? throw new Error "$.Deferred not available -- Please include jQuery 1.5+"
+    ($ ?= @$ ? @jQuery ? {}).Deferred ? throw new Error "$.Deferred not available -- Please include jQuery 1.5+"
+    Jscex ?= @Jscex ? throw new Error "Jscex not available -- Please include jscex.min.js"
 
 /* Convert a Promise (Q, jQuery, Dojo) object into a Task */
 Jscex.Async.@Binding.fromPromise = (p) ->
@@ -49,7 +49,10 @@ Jscex.modules.\async-jquery = true
    Once invoked, we implicitly start the task, and return a
    deferred Promise object representing its result.
 */
-$.async = (cb) -> eval Jscex.compile \async-jquery, cb
+$.async = (cb) -> Jscex.compile(\async-jquery, cb).replace(
+    /(Jscex.builders\["async-jquery"\])/
+    '$.$1'
+)
 
 /* Turn off Jscex logging by default */
 Jscex.logger.level = 999

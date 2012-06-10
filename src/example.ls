@@ -1,7 +1,7 @@
 $ = require './jscex-jquery'
 say = !-> console.log it; console.log ''
 
-fetch = $.async (url) ->
+fetch = eval $.async (url) ->
     it = $await $.get url
     a = $(it) .find 'h2:first a'
     title = a.text!

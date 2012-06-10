@@ -7,7 +7,7 @@ jscex-jquery
 $ = require('./jscex-jquery');
 
 // Define an Async function with a special $await keyword in it
-var fetch = $.async(function(url) {
+var fetch = eval $.async(function(url) {
     // $await takes anything that returns a Promise
     var it = $await( $.get(url) );
     // ...do something with it...
@@ -21,10 +21,10 @@ fetch('http://.../').done(...).fail(...).always(...);
 # Description
 
 This module exports `$.Jscex` as a jQuery plugin, providing an
-`$.async` helper that turns a regular function into one that
+`$.async` helper that compiles a regular function into one that
 returns a Promise object.
 
-Functions defines with `$.async` has access to an extra `$await`
+Functions defined with `$.async` has access to an extra `$await`
 keyword, which can implicitly wait for other Promise objects.
 
 Please see `example.js` for a sample usage, and type `make demo`

@@ -5,7 +5,7 @@
     console.log(it);
     console.log('');
   };
-  fetch = $.async(function(url){
+  fetch = eval($.async(function(url){
     var it, a, title, text;
     it = $await($.get(url));
     a = $(it).find('h2:first a');
@@ -16,7 +16,7 @@
       title: title,
       text: text
     };
-  });
+  }));
   say('[Demo: Fetching invalid host, expecting ENOENT...]');
   fetch('http://blog.zhaojie.error').fail(function(it){
     return say(it.responseText);
