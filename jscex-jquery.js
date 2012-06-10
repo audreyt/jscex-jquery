@@ -32,9 +32,11 @@
         switch (type) {
         case 'normal':
         case 'return':
-          return __.resolve(value);
+          __.resolve(value);
+          break;
         case 'throw':
-          return __.reject(value);
+          __.reject(value);
+          break;
         default:
           throw new Error("Unsupported type: " + type);
         }
@@ -45,15 +47,15 @@
       return {
         next: function(_this, cb){
           return promise.then(function(result){
-            var nextTask;
+            var step;
             try {
-              nextTask = generator.call(_this, result);
+              step = generator.call(_this, result);
             } catch (e) {
               return cb('throw', e);
             }
-            return nextTask.next(_this, cb);
+            step.next(_this, cb);
           }, function(error){
-            return cb('throw', error);
+            cb('throw', error);
           });
         }
       };

@@ -22,7 +22,7 @@ Jscex.Async.Binding.fromPromise = (p) ->
 class AsyncBuilder
     Start: (_this, step) ->
         __ = $.Deferred()
-        step.next _this, (type, value, target) ->
+        step.next _this, !(type, value, target) ->
             switch type
             | \normal \return   => __.resolve value
             | \throw            => __.reject value
@@ -30,14 +30,11 @@ class AsyncBuilder
         return __
     Bind: (promise, generator) ->
         return next: (_this, cb) -> promise.then(
-            (result) ->
-                try
-                    nextTask = generator.call _this, result
-                catch
-                    return cb \throw, e
-                nextTask.next _this, cb
-            (error) ->
-                cb \throw, error
+            !(result) ->
+                try step = generator.call _this, result
+                catch return cb \throw, e
+                step.next _this, cb
+            !(error) -> cb \throw, error
         )
 
 AsyncBuilder:: <<<< Jscex.BuilderBase::
