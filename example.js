@@ -5,7 +5,7 @@
     console.log(it);
     console.log('');
   };
-  fetch = $.evalAsync(function(url){
+  fetch = $.async(function(url){
     var it, a, title, text;
     it = $await($.get(url));
     a = $(it).find('h2:first a');

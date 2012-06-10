@@ -72,7 +72,7 @@
      Once invoked, we implicitly start the task, and return a
      deferred Promise object representing its result.
   */
-  $.evalAsync = function(cb){
+  $.async = function(cb){
     return eval(Jscex.compile('async-jquery', cb));
   };
   /* Turn off Jscex logging by default */

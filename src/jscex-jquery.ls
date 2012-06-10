@@ -48,7 +48,7 @@ Jscex.modules.\async-jquery = true
    Once invoked, we implicitly start the task, and return a
    deferred Promise object representing its result.
 */
-$.evalAsync = (cb) -> eval Jscex.compile \async-jquery, cb
+$.async = (cb) -> eval Jscex.compile \async-jquery, cb
 
 /* Turn off Jscex logging by default */
 Jscex.logger.level = 999
