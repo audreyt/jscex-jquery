@@ -2,10 +2,10 @@ $ = require './jscex-jquery'
 say = !-> console.log it; console.log ''
 
 fetch = $.evalAsync (url) ->
-    it = $await $.async $.get url
+    it = $await $.get url
     a = $(it) .find 'h2:first a'
     title = a.text!
-    it = $await $.async $.get "#url/#{ a.attr \href }"
+    it = $await $.get "#url/#{ a.attr \href }"
     text = $(it) .find '.post p:last' .text!
     return { title, text }
 

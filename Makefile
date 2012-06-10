@@ -8,5 +8,4 @@ demo ::
 	node example.js
 
 test :: all demo
-	node example.js
 
