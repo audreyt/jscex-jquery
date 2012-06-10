@@ -25,8 +25,8 @@ class AsyncBuilder
         __ = $.Deferred!
         step.next _this, !(type, value, target) ->
             switch type
-            | \normal \return   => __.resolve value
-            | \throw            => __.reject value
+            | \normal \return   => __.resolveWith (target ? value), [value]
+            | \throw            => __.rejectWith (target ? value), [value]
             | otherwise         => throw new Error "Unsupported type: #type"
         return __
     Bind: (promise, generator) ->
