@@ -1,5 +1,5 @@
 $ = require './jscex-jquery'
-say = -> console.log it; console.log ''
+say = !-> console.log it; console.log ''
 
 fetch = $.evalAsync (url) ->
     it = $await $.async $.get url

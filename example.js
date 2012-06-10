@@ -3,7 +3,7 @@
   $ = require('./jscex-jquery');
   say = function(it){
     console.log(it);
-    return console.log('');
+    console.log('');
   };
   fetch = $.evalAsync(function(url){
     var it, a, title, text;

@@ -16,6 +16,7 @@ Jscex.Async.Binding.fromPromise = (p) ->
         -> t.complete \success, it
         -> t.complete \failure, it
     )
+    return t
 
 /* Shorthand for fromPromise */
 $.async = Jscex.Async.Binding.fromPromise
@@ -30,8 +31,8 @@ $.evalAsync = (cb) ->
     return ->
         __ = $.Deferred!
         with runner ...arguments
-            @addEventListener \success, -> __.resolve @result
-            @addEventListener \failure, -> __.reject @error
+            @addEventListener \success, !-> __.resolve @result
+            @addEventListener \failure, !-> __.reject @error
             @start!
         __
 

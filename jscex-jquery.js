@@ -13,11 +13,12 @@
   /* Convert a Promise (Q, jQuery, Dojo) object into a Task */
   Jscex.Async.Binding.fromPromise = function(p){
     return Jscex.Async.Task.create(function(t){
-      return p.then(function(it){
+      p.then(function(it){
         return t.complete('success', it);
       }, function(it){
         return t.complete('failure', it);
       });
+      return t;
     });
   };
   /* Shorthand for fromPromise */
@@ -35,10 +36,10 @@
       __ = $.Deferred();
       (function(){
         this.addEventListener('success', function(){
-          return __.resolve(this.result);
+          __.resolve(this.result);
         });
         this.addEventListener('failure', function(){
-          return __.reject(this.error);
+          __.reject(this.error);
         });
         this.start();
       }.call(runner.apply(null, arguments)));
