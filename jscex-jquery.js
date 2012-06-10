@@ -1,17 +1,26 @@
 (function(){
-  var Jscex, XMLHttpRequest, $, AsyncBuilder;
+  var Jscex, $, XMLHttpRequest, AsyncBuilder, __ref;
   Jscex = require('jscex');
   require('jscex-jit').init(Jscex);
   require('jscex-async').init(Jscex);
-  require('jscex-async-powerpack').init(Jscex);
-  XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-  $ = require('jquery');
-  $.support.cors = true;
-  $.ajaxSettings.xhr = function(){
-    return new XMLHttpRequest;
-  };
+  if (typeof module != 'undefined' && module !== null) {
+    module.exports = $ = require('jquery');
+    XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+    $.support.cors = true;
+    $.ajaxSettings.xhr = function(){
+      return new XMLHttpRequest;
+    };
+  } else {
+    ($ != null
+      ? $
+      : $ = typeof jQuery != 'undefined' && jQuery !== null
+        ? jQuery
+        : {}).Deferred == null && (function(){
+      throw new Error("$.Deferred not available -- Please include jQuery 1.5+");
+    }());
+  }
   /* Convert a Promise (Q, jQuery, Dojo) object into a Task */
-  Jscex.Async.Binding.fromPromise = function(p){
+  ((__ref = Jscex.Async).Binding || (__ref.Binding = {})).fromPromise = function(p){
     return Jscex.Async.Task.create(function(t){
       p.then(function(it){
         return t.complete('success', it);
@@ -79,7 +88,6 @@
   Jscex.logger.level = 999;
   /* Export the $ object extended with $.Jscex */
   $.Jscex = Jscex;
-  module.exports = $;
   function __importAll(obj, src){
     for (var key in src) obj[key] = src[key];
     return obj;

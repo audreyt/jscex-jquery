@@ -1,13 +1,12 @@
 { "name" :            "jscex-jquery"
     , "description" : "Async/Await support for jQuery 1.5+"
-    , "version" :    "0.0.1"
+    , "version" :    "0.0.2"
     , "main": "jscex-jquery.js"
     , "dependencies": {
         "jquery": "*",
         "jscex": "*",
         "jscex-jit": "*",
-        "jscex-async": "*",
-        "jscex-async-powerpack": "*"
+        "jscex-async": "*"
     }
     , "devDependencies": {
         "LiveScript": "0.9.7"

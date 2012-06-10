@@ -1,16 +1,17 @@
 Jscex = require \jscex
 require \jscex-jit .init Jscex
 require \jscex-async .init Jscex
-require \jscex-async-powerpack .init Jscex
 
-{ XMLHttpRequest } = require \xmlhttprequest
-
-$ = require \jquery
-$.support.cors = yes
-$.ajaxSettings.xhr = -> new XMLHttpRequest
+if module?
+    module.exports = $ = require \jquery
+    { XMLHttpRequest } = require \xmlhttprequest
+    $.support.cors = yes
+    $.ajaxSettings.xhr = -> new XMLHttpRequest
+else
+    ($ ?= jQuery ? {}).Deferred ? throw new Error "$.Deferred not available -- Please include jQuery 1.5+"
 
 /* Convert a Promise (Q, jQuery, Dojo) object into a Task */
-Jscex.Async.Binding.fromPromise = (p) ->
+Jscex.Async.@Binding.fromPromise = (p) ->
     t <- Jscex.Async.Task.create
     p.then(
         -> t.complete \success, it
@@ -55,4 +56,3 @@ Jscex.logger.level = 999
 
 /* Export the $ object extended with $.Jscex */
 $.Jscex = Jscex
-module.exports = $
