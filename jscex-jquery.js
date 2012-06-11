@@ -38,9 +38,9 @@
     });
   };
   /* Our own monad that runs on $.Deferred instead of Task */
-  AsyncBuilder = (function(){
+  AsyncBuilder = (function(superclass){
     AsyncBuilder.displayName = 'AsyncBuilder';
-    var prototype = AsyncBuilder.prototype, constructor = AsyncBuilder;
+    var prototype = __extend(AsyncBuilder, superclass).prototype, constructor = AsyncBuilder;
     prototype.Start = function(_this, step){
       var __;
       __ = $.Deferred();
@@ -78,8 +78,7 @@
     };
     function AsyncBuilder(){}
     return AsyncBuilder;
-  }());
-  __importAll(AsyncBuilder.prototype, Jscex.BuilderBase.prototype);
+  }(Jscex.BuilderBase));
   Jscex.binders['async-jquery'] = '$await';
   Jscex.builders['async-jquery'] = new AsyncBuilder;
   Jscex.modules['async-jquery'] = true;
@@ -103,8 +102,10 @@
   Jscex.logger.level = 999;
   /* Export the $ object extended with $.Jscex */
   $.Jscex = Jscex;
-  function __importAll(obj, src){
-    for (var key in src) obj[key] = src[key];
-    return obj;
+  function __extend(sub, sup){
+    function fun(){} fun.prototype = (sub.superclass = sup).prototype;
+    (sub.prototype = new fun).constructor = sub;
+    if (typeof sup.extended == 'function') sup.extended(sub);
+    return sub;
   }
 }).call(this);

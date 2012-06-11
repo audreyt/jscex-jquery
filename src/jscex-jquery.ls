@@ -20,7 +20,7 @@ Jscex.Async.@Binding.fromPromise = (p) ->
     return t
 
 /* Our own monad that runs on $.Deferred instead of Task */
-class AsyncBuilder
+class AsyncBuilder extends Jscex.BuilderBase
     Start: (_this, step) ->
         __ = $.Deferred!
         step.next _this, !(type, value, target) ->
@@ -37,8 +37,6 @@ class AsyncBuilder
                 step.next _this, cb
             !(error) -> cb \throw, error
         )
-
-AsyncBuilder:: <<<< Jscex.BuilderBase::
 
 Jscex.binders.\async-jquery = \$await
 Jscex.builders.\async-jquery = new AsyncBuilder
