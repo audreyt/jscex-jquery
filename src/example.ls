@@ -3,11 +3,11 @@ say = !-> console.log it; console.log ''
 
 fetch = eval $.async (url) ->
     it = $await $.get url
-    a = $(it) .find 'h2:first a'
+    a = $ it .find 'h2:first a'
     title = a.text!
     it = $await $.get "#url/#{ a.attr \href }"
-    text = $(it) .find '.post p:last' .text!
-    return { title, text }
+    text = $ it .find '.post p:last' .text!
+    { title, text }
 
 say '[Demo: Fetching invalid host, expecting ENOENT...]'
 

@@ -13,10 +13,9 @@ else
 /* Convert a Promise (Q, jQuery, Dojo) object into a Task */
 Jscex.Async.@Binding.fromPromise = (p) ->
     t <- Jscex.Async.Task.create
-    p.then(
+    p.then do
         -> t.complete \success, it
         -> t.complete \failure, it
-    )
     return t
 
 /* Our own monad that runs on $.Deferred instead of Task */
@@ -30,27 +29,25 @@ class AsyncBuilder extends Jscex.BuilderBase
             | otherwise         => throw new Error "Unsupported type: #type"
         return __
     Bind: (promise, generator) ->
-        return next: (_this, cb) -> promise.then(
+        next: (_this, cb) -> promise.then do
             !(result) ->
-                try step = generator.call _this, result
+                try   step = generator.call _this, result
                 catch return cb \throw, e
                 step.next _this, cb
             !(error) -> cb \throw, error
-        )
 
-Jscex.binders.\async-jquery = \$await
+Jscex.binders .\async-jquery = \$await
 Jscex.builders.\async-jquery = new AsyncBuilder
-Jscex.modules.\async-jquery = true
+Jscex.modules .\async-jquery = true
 
 /* Compile a function containing the special $await keyword.
 
    Once invoked, we implicitly start the task, and return a
    deferred Promise object representing its result.
 */
-$.async = (cb) -> Jscex.compile(\async-jquery, cb).replace(
+$.async = (cb) -> Jscex.compile(\async-jquery, cb).replace do
     /(Jscex.builders\["async-jquery"\])/
     '$.$1'
-)
 
 $.async.sleep = (ms) ->
     __ = $.Deferred!
